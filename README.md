@@ -15,7 +15,4 @@ Discover creative recipes and ways to incorporate your favorite snacks into meal
 - 🌟 Personalized Recommendations
 Receive tailored suggestions based on your dietary preferences and health goals.
 
-License
-Snackify is released under the MIT License. See the [LICENSE](./LICENSE) file for more details.
-
-Empower your snacking journey with Snackify! 🍫📖
+Empower your snacking journey with Snackalyze! 🍫📖
