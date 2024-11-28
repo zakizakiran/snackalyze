@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active {
+  font-weight: bold;
+  color: #000; /* or any other styles you want */
+}
+
+@layer base {
+  @font-face {
+    font-family: "Poppins";
+    src: url("assets/fonts/Poppins-Regular.ttf");
+  }
+  @font-face {
+    font-family: "Poppins Medium";
+    src: url("assets/fonts/Poppins-Medium.ttf");
+  }
+}
