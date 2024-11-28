@@ -1,4 +1,4 @@
-## Snackalyze RESTful API
+## Snackalyze
 
 Snackalyze is a modern web application designed to transform the way you interact with snacks! By integrating cutting-edge image recognition technology, Snackalyze allows users to scan snack packaging and instantly access detailed and insightful information. Whether you’re tracking your diet, exploring new snacks, or simply curious about what you’re eating, Snackify has got you covered.
 
