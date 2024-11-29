@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 const AuthLayout = (props) => {
   const { title, children, type } = props;
   return (
-    <div className="flex justify-center pt-16 min-h-screen lg:pt-0 lg:items-center">
-      <div className="w-full px-8 lg:max-w-xl">
+    <div className="flex justify-center py-20 lg:items-center">
+      <div className="w-full px-8 sm:max-w-lg lg:max-w-xl">
         <h1 className="text-3xl lg:text-4xl mb-16 font-poppins font-bold tracking-wider">
           WELCOME TO SNACKALYZE
         </h1>

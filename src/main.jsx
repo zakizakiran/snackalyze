@@ -4,36 +4,33 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/404.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
-import Navbar from "./components/Layouts/Navbar.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
+import MainLayout from "./components/Layouts/MainLayout.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <>
-        <Navbar />
+      <MainLayout>
         <h1 className="flex justify-center py-10">Home Page</h1>
-      </>
+      </MainLayout>
     ),
     errorElement: <ErrorPage />,
   },
   {
     path: "/login",
     element: (
-      <>
-        <Navbar />
+      <MainLayout>
         <LoginPage />
-      </>
+      </MainLayout>
     ),
   },
   {
     path: "/register",
     element: (
-      <>
-        <Navbar />
+      <MainLayout>
         <RegisterPage />
-      </>
+      </MainLayout>
     ),
   },
 ]);
