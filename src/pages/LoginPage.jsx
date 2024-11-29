@@ -1,11 +1,9 @@
-import { useEffect } from "react";
 import LoginForm from "../components/Fragments/LoginForm";
 import AuthLayout from "../components/Layouts/AuthLayout";
+import { useTitle } from "../hooks/useTitle";
 
 const LoginPage = () => {
-  useEffect(() => {
-    document.title = "Login | Snackalyze";
-  });
+  useTitle({ title: "Login" });
 
   return (
     <AuthLayout title="Login" type="login">

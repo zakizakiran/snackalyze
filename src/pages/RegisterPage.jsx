@@ -1,11 +1,9 @@
-import { useEffect } from "react";
 import RegisterForm from "../components/Fragments/RegisterForm";
 import AuthLayout from "../components/Layouts/AuthLayout";
+import { useTitle } from "../hooks/useTitle";
 
 const RegisterPage = () => {
-  useEffect(() => {
-    document.title = "Register | Snackalyze";
-  });
+  useTitle({ title: "Register" });
 
   return (
     <AuthLayout title="Create an Account" type="register">
