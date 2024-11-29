@@ -5,7 +5,7 @@ const HomePage = () => {
   useTitle({ title: "Home" });
   return (
     <div className="px-4 py-8 lg:py-20">
-      <div className="container text-center mb-16 lg:mb-20">
+      <div className="container text-center m-auto mb-16 lg:mb-20">
         <div className="lg:w-1/3 m-auto">
           <h1 className="font-bold text-3xl mb-8">
             Scan snacks, get insights, snack smarter!
@@ -19,8 +19,8 @@ const HomePage = () => {
           </Button>
         </div>
       </div>
-      <div className="bg-gradient-to-b lg:bg-gradient-to-r from-primary to-black w-full rounded-lg p-8 lg:p-20 text-white mb-10 lg:mb-16">
-        <div className="container flex flex-col lg:flex-row gap-10">
+      <div className="container m-auto bg-gradient-to-b lg:bg-gradient-to-r from-primary to-black w-full rounded-lg p-8 sm:p-16 lg:p-20 text-white mb-10 lg:mb-16">
+        <div className="container m-auto flex flex-col sm:flex-row lg:flex-row gap-10">
           <div>
             <p className="font-semibold mb-2">Recipe Ideas</p>
             <p className="text-sm">
@@ -44,7 +44,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="container mb-10 lg:mb-16">
+      <div className="container mb-10 m-auto lg:mb-16">
         <h1 className="font-bold text-2xl mb-4">FAQs</h1>
         <div className="collapse collapse-arrow bg-base-200">
           <input type="radio" name="my-accordion-2" defaultChecked />
@@ -89,7 +89,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="container">
+      <div className="container m-auto">
         <div className="bg-primary rounded-lg p-8 text-white">
           <div className="flex flex-col gap-16 justify-between lg:flex-row">
             <div>
@@ -104,7 +104,11 @@ const HomePage = () => {
                 Contact Now!
               </Button>
             </div>
-            <img src="/images/ask_illustration.svg" alt="" />
+            <img
+              src="/images/ask_illustration.svg"
+              className="sm:w-1/2 sm:m-auto lg:w-1/4 lg:m-0"
+              alt=""
+            />
           </div>
         </div>
       </div>
