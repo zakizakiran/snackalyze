@@ -1,118 +1,61 @@
-import Button from "../components/Elements/Button";
 import { useTitle } from "../hooks/useTitle";
+import { PiCookingPotDuotone } from "react-icons/pi";
+import { LuScanLine } from "react-icons/lu";
+import { PiHeartbeatDuotone } from "react-icons/pi";
+import { PiSealQuestionDuotone } from "react-icons/pi";
+import HomeLayout from "../components/Layouts/HomeLayout";
+import HeroSection from "../components/Fragments/HeroSection";
+import Accordion from "../components/Elements/Accordion";
+import FeatureItem from "../components/Elements/FeatureItem";
+import ContactSection from "../components/Fragments/ContactSection";
+import Card from "../components/Elements/Card";
 
 const HomePage = () => {
   useTitle({ title: "Home" });
+
   return (
-    <div className="px-4 py-8 lg:py-20">
-      <div className="container text-center m-auto mb-16 lg:mb-20">
-        <div className="lg:w-1/3 m-auto">
-          <h1 className="font-bold text-3xl mb-8">
-            Scan snacks, get insights, snack smarter!
-          </h1>
-          <p className="text-sm text-gray-400 mb-10">
-            Discover the story behind every bite—scan, analyze, and enjoy your
-            snacks smarter with Snackalyze!
-          </p>
-          <Button classname="bg-primary text-white px-8 py-4 hover:bg-black">
-            Explore Now!
-          </Button>
+    <HomeLayout>
+      <HeroSection />
+      <Card classname="bg-gradient-to-b lg:bg-gradient-to-r from-primary to-black text-white px-8 py-12 sm:p-16 lg:p-20 mb-10 lg:mb-16">
+        <div className="container m-auto flex flex-col lg:flex-row gap-16">
+          <FeatureItem
+            title="Recipe Ideas"
+            desc="Discover creative recipes and ways to incorporate your favorite snacks into meals."
+            icon={<PiCookingPotDuotone size={"1.5rem"} />}
+          />
+          <FeatureItem
+            title="Want to Know About Snack?"
+            desc="Scan Snack Packaging Effortlessly scan any snack package to reveal all the essential details."
+            icon={<LuScanLine size={"1.5rem"} />}
+          />
+          <FeatureItem
+            title="Worried About your Health?"
+            desc="Personalized Recommendations Receive tailored suggestions based on
+              your dietary preferences and health goals."
+            icon={<PiHeartbeatDuotone size={"1.5rem"} />}
+          />
         </div>
-      </div>
-      <div className="container m-auto bg-gradient-to-b lg:bg-gradient-to-r from-primary to-black w-full rounded-lg p-8 sm:p-16 lg:p-20 text-white mb-10 lg:mb-16">
-        <div className="container m-auto flex flex-col sm:flex-row lg:flex-row gap-10">
-          <div>
-            <p className="font-semibold mb-2">Recipe Ideas</p>
-            <p className="text-sm">
-              Discover creative recipes and ways to incorporate your favorite
-              snacks into meals.
-            </p>
-          </div>
-          <div>
-            <p className="font-semibold mb-2">Want to Know About Snack?</p>
-            <p className="text-sm">
-              Scan Snack Packaging Effortlessly scan any snack package to reveal
-              all the essential details.
-            </p>
-          </div>
-          <div>
-            <p className="font-semibold mb-2">Worried About your Health?</p>
-            <p className="text-sm">
-              Personalized Recommendations Receive tailored suggestions based on
-              your dietary preferences and health goals.
-            </p>
-          </div>
-        </div>
-      </div>
+      </Card>
       <div className="container mb-10 m-auto lg:mb-16">
-        <h1 className="font-bold text-2xl mb-4">FAQs</h1>
-        <div className="collapse collapse-arrow bg-base-200">
-          <input type="radio" name="my-accordion-2" defaultChecked />
-          <div className="collapse-title text-sm font-semibold">
-            What is Snackalyze?
-          </div>
-          <div className="collapse-content">
-            <p className="text-sm text-gray-400">
-              Snackalyze allows users to scan snack packaging and instantly
-              access detailed and insightful information. Whether you’re
-              tracking your diet, exploring new snacks, or simply curious about
-              what you’re eating, Snackify has got you covered.
-            </p>
-          </div>
-        </div>
-        <div className="collapse collapse-arrow bg-base-200">
-          <input type="radio" name="my-accordion-2" />
-          <div className="collapse-title text-sm font-semibold">
-            Why Snackalyze?
-          </div>
-          <div className="collapse-content">
-            <p className="text-sm text-gray-400">
-              Snackalyze allows users to scan snack packaging and instantly
-              access detailed and insightful information. Whether you’re
-              tracking your diet, exploring new snacks, or simply curious about
-              what you’re eating, Snackify has got you covered.
-            </p>
-          </div>
-        </div>
-        <div className="collapse collapse-arrow bg-base-200">
-          <input type="radio" name="my-accordion-2" />
-          <div className="collapse-title text-sm font-semibold">
-            How it Works?
-          </div>
-          <div className="collapse-content">
-            <p className="text-sm text-gray-400">
-              Snackalyze allows users to scan snack packaging and instantly
-              access detailed and insightful information. Whether you’re
-              tracking your diet, exploring new snacks, or simply curious about
-              what you’re eating, Snackify has got you covered.
-            </p>
-          </div>
-        </div>
+        <h1 className="flex items-center gap-2 font-bold text-2xl mb-4">
+          <PiSealQuestionDuotone size={"2rem"} /> FAQs
+        </h1>
+        <Accordion
+          checked={true}
+          title="What is Snackalyze?"
+          desc="Snackalyze is a web app that uses image recognition to scan snack packaging and instantly provide nutritional details, recipe ideas, and personalized snack recommendations."
+        />
+        <Accordion
+          title="Why Snackalyze?"
+          desc="Snackalyze allows users to scan snack packaging and instantly access detailed and insightful information. Whether you’re tracking your diet, exploring new snacks, or simply curious about what you’re eating, Snackalyze has got you covered."
+        />
+        <Accordion
+          title="How it Works?"
+          desc="Snackalyze simplifies your snacking experience with cutting-edge technology. Simply take a photo of your snack's packaging, and the app uses advanced image recognition to identify the product."
+        />
       </div>
-      <div className="container m-auto">
-        <div className="bg-primary rounded-lg p-8 text-white">
-          <div className="flex flex-col gap-16 justify-between lg:flex-row">
-            <div>
-              <h1 className="font-bold text-2xl mb-4">
-                Have a Question About Snackalyze?
-              </h1>
-              <p>
-                Our team is here to help! Contact us with any questions or
-                concerns you may have.
-              </p>
-              <Button classname="bg-red-300 text-white px-8 py-4 mt-8 hover:bg-black">
-                Contact Now!
-              </Button>
-            </div>
-            <img
-              src="/images/ask_illustration.svg"
-              className="sm:w-1/2 sm:m-auto lg:w-1/4 lg:m-0"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+      <ContactSection />
+    </HomeLayout>
   );
 };
 
