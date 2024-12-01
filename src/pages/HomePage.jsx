@@ -24,7 +24,7 @@ const HomePage = () => {
             icon={<PiCookingPotDuotone size={"1.5rem"} />}
           />
           <FeatureItem
-            title="Want to Know About Snack?"
+            title="Scan your Snacks"
             desc="Scan Snack Packaging Effortlessly scan any snack package to reveal all the essential details."
             icon={<LuScanLine size={"1.5rem"} />}
           />
