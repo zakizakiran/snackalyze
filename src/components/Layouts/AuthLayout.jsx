@@ -8,7 +8,7 @@ const AuthLayout = (props) => {
         <img src="/images/logo_icon.svg" className="w-16" alt="" />
       </div>
       <div className="w-full px-4 sm:max-w-lg lg:max-w-xl">
-        <h1 className="text-3xl lg:text-4xl mb-20 font-bold tracking-wider text-center">
+        <h1 className="text-3xl mb-20 font-bold tracking-wider text-center">
           WELCOME TO SNACKALYZE
         </h1>
         <h1 className="text-2xl lg:text-3xl font-poppinsMedium mb-4">
