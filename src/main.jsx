@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
 import MainLayout from "./components/Layouts/MainLayout.jsx";
 import HomePage from "./pages/HomePage.jsx";
+import AboutPage from "./pages/AboutPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,14 @@ const router = createBrowserRouter([
       </MainLayout>
     ),
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "/about",
+    element: (
+      <MainLayout>
+        <AboutPage />
+      </MainLayout>
+    ),
   },
   {
     path: "/login",
