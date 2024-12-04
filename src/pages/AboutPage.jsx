@@ -1,4 +1,8 @@
+import { useTitle } from "../hooks/useTitle";
+
 const AboutPage = () => {
+  useTitle({ title: "About" });
+
   return (
     <div className="flex flex-col items-center lg:flex-row-reverse px-4 py-12">
       <div className="m-auto">
