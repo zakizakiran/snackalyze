@@ -4,7 +4,7 @@ Snackalyze is a modern web application designed to transform the way you interac
 
 ### Key Features
 
-- 📸 Scan Snack Packaging Effortlessly scan any snack package to reveal all the essential details.
+- 📸 Scan Snack Packaging Effortlessly scan any snack package barcode to reveal all the essential details.
 
 - 🍎 Comprehensive Nutritional Information Gain instant access to nutritional facts, including calorie counts, macronutrients, and ingredient lists.
 
