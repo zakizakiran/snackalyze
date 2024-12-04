@@ -7,6 +7,11 @@
   color: #000; /* or any other styles you want */
 }
 
+.tooltip {
+  --tooltip-color: #d94445;
+  --tooltip-text-color: #fff;
+}
+
 @layer base {
   @font-face {
     font-family: "Poppins";

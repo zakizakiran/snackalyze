@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../Elements/Button";
 
 const HeroSection = () => {
@@ -11,9 +12,11 @@ const HeroSection = () => {
           Discover the story behind every bite—scan, analyze, and enjoy your
           snacks smarter with Snackalyze!
         </p>
-        <Button classname="bg-primary text-white px-8 py-4 hover:bg-black">
-          Explore Now!
-        </Button>
+        <Link to="/dashboard">
+          <Button classname="bg-primary text-white px-8 py-4 hover:bg-black">
+            Explore Now!
+          </Button>
+        </Link>
       </div>
     </div>
   );

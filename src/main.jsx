@@ -8,6 +8,8 @@ import RegisterPage from "./pages/RegisterPage.jsx";
 import MainLayout from "./components/Layouts/MainLayout.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
+import DashboardPage from "./pages/DashboardPage.jsx";
+import ScanPage from "./pages/ScanPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,22 @@ const router = createBrowserRouter([
     element: (
       <MainLayout>
         <RegisterPage />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <MainLayout>
+        <DashboardPage />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/scan",
+    element: (
+      <MainLayout>
+        <ScanPage />
       </MainLayout>
     ),
   },
