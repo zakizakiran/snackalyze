@@ -7,9 +7,27 @@ import { useTitle } from "../hooks/useTitle";
 const ScanPage = () => {
   const [result, setResult] = useState(null);
   const [videoDevice, setVideoDevice] = useState(null);
+  const [apiData, setApiData] = useState(null);
   const [permissionGranted, setPermissionGranted] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
+  const API_KEY = "b8331f9ee8ff47d698514abf7fdf1997";
   useTitle({ title: "Scan Snack" });
+
+  useEffect(() => {
+    if (result) {
+      // Fetch data from the API
+      fetch(
+        `https://api.spoonacular.com/food/products/upc/${result}?apiKey=${API_KEY}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setApiData(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data from API:", error);
+        });
+    }
+  }, [result]);
 
   useEffect(() => {
     const reader = new BrowserMultiFormatReader();
@@ -55,6 +73,14 @@ const ScanPage = () => {
   return isConfirm ? (
     <div className="">
       <p>Result: {result.text}</p>
+      {apiData ? (
+        <div>
+          <h3>Data from API:</h3>
+          <pre>{JSON.stringify(apiData, null, 2)}</pre>
+        </div>
+      ) : (
+        <p>Loading data...</p>
+      )}
     </div>
   ) : (
     <div className="flex justify-center items-center flex-col px-2">
