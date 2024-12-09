@@ -4,8 +4,14 @@ import InputIcon from "../Elements/InputIcon";
 import { useGreetings } from "../../hooks/useGreeting";
 
 const DashboardHeaderSection = (props) => {
-  const { username } = props;
+  const { username, onSearch } = props; // Added onSearch prop
   const greeting = useGreetings();
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter") {
+      onSearch(e.target.value); // Trigger the onSearch callback
+    }
+  };
 
   return (
     <div className="header">
@@ -19,6 +25,7 @@ const DashboardHeaderSection = (props) => {
           icon={
             <PiMagnifyingGlassDuotone className="absolute left-3 top-1/2 transform -translate-y-1/2" />
           }
+          onKeyDown={handleSearch} // Listen for "Enter" key
         />
         <div className="tooltip" data-tip="Scan Now!">
           <a href="/scan">

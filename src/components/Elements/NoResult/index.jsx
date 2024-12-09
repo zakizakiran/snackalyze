@@ -3,7 +3,7 @@ import Label from "./label";
 
 const NoResult = () => {
   return (
-    <div className="flex justify-center min-h-screen text-center">
+    <div className="flex justify-center text-center">
       <div>
         <Player
           src="/animations/not-found.json"

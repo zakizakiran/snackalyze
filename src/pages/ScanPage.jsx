@@ -61,7 +61,7 @@ const ScanPage = () => {
       <div className="text-center">
         <h1 className="font-poppinsMedium mb-8">Scan your Barcode!</h1>
         {permissionGranted ? (
-          <video id="video" className="w-full rounded-xl mb-10" />
+          <video id="video" className="lg:max-w-lg rounded-xl mb-10" />
         ) : (
           <p className="bg-red-200 text-red-600 p-4 text-sm rounded-lg mb-10">
             Camera permission is required to scan barcodes.
