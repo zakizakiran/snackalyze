@@ -3,12 +3,16 @@ import { BrowserMultiFormatReader } from "@zxing/library";
 import Button from "../components/Elements/Button";
 import { PiScanDuotone } from "react-icons/pi";
 import { useTitle } from "../hooks/useTitle";
+import { use } from "react";
+import { getSnackByUpc } from "../api/services/snackService";
+import ListTile from "../components/Elements/ListTile";
 
 const ScanPage = () => {
   const [result, setResult] = useState(null);
   const [videoDevice, setVideoDevice] = useState(null);
   const [permissionGranted, setPermissionGranted] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
+  const [snackData, setSnackData] = useState({});
   useTitle({ title: "Scan Snack" });
 
   useEffect(() => {
@@ -50,11 +54,85 @@ const ScanPage = () => {
 
   const handleConfirm = () => {
     setIsConfirm(true);
+    const upc = result.text;
+    const fetchSnackData = async () => {
+      try {
+        const response = await getSnackByUpc(upc);
+        setSnackData(response);
+      } catch (error) {
+        console.error("Error fetching snack data:", error);
+      }
+    };
+    fetchSnackData();
+  };
+
+  // Fungsi untuk mendapatkan nilai nutrient tertentu
+  const getNutrientValue = (name) => {
+    const nutrient = snackData.nutrition?.nutrients.find(
+      (item) => item.name === name
+    );
+    return nutrient ? nutrient.amount : "N/A"; // Tampilkan 'N/A' jika nutrient tidak ditemukan
   };
 
   return isConfirm ? (
     <div className="">
-      <p>Result: {result.text}</p>
+      {snackData ? (
+        <div className="flex justify-center items-center flex-col px-2">
+          <div className="text-center">
+            <h1 className="font-poppinsMedium mb-8">Snack Data</h1>
+            <div className="bg-white p-8 rounded-lg shadow-md mb-10">
+              <img
+                src={snackData.image}
+                className="w-auto m-auto mb-10"
+                alt=""
+              />
+              <h2 className="font-bold text-lg mb-6">{snackData.title}</h2>
+              <div className="flex flex-col gap-2">
+                <ListTile title="Brand" body={snackData.brand || "-"} />
+                <ListTile
+                  title="Calories (kcal)"
+                  body={getNutrientValue("Calories")}
+                />
+                <ListTile
+                  title="Carbohydrates (g)"
+                  body={getNutrientValue("Carbohydrates")}
+                />
+                <ListTile
+                  title="Sodium (mg)"
+                  body={getNutrientValue("Sodium")}
+                />
+                <ListTile title="Sugar (g)" body={getNutrientValue("Sugar")} />
+                <ListTile
+                  title="Protein"
+                  body={snackData.nutrition?.protein || "-"}
+                />
+              </div>
+            </div>
+            <a href="/scan">
+              <Button
+                type="button"
+                classname="bg-primary hover:bg-black text-white w-full mt-10"
+              >
+                Scan Another
+              </Button>
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div className="flex justify-center items-center flex-col px-2">
+          <div className="text-center">
+            <h1 className="font-poppinsMedium mb-8">No Data Found</h1>
+            <a href="/scan">
+              <Button
+                type="button"
+                classname="bg-primary hover:bg-black text-white w-full mt-10"
+              >
+                Scan Another
+              </Button>
+            </a>
+          </div>
+        </div>
+      )}
     </div>
   ) : (
     <div className="flex justify-center items-center flex-col px-2">

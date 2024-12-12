@@ -5,6 +5,7 @@ import { PiSignOutDuotone, PiUserCircleDuotone } from "react-icons/pi";
 import Button from "../Elements/Button";
 import { useLogin } from "../../hooks/useLogin";
 import ModalBox from "../Elements/ModalBox";
+import { userLogout } from "../../api/services/authService";
 
 const Navbar = () => {
   const token = localStorage.getItem("accessToken");
@@ -16,11 +17,23 @@ const Navbar = () => {
     document.getElementById("my-drawer-3").checked = false;
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    setIsModalOpen(false);
-    navigate("/login");
+  const handleLogout = async () => {
+    try {
+      const refreshToken = localStorage.getItem("refreshToken");
+      if (!refreshToken) {
+        throw new Error("No refresh token available");
+      }
+
+      await userLogout(refreshToken);
+
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      setIsModalOpen(false);
+      navigate("/login");
+    } catch (error) {
+      console.error("Error during logout:", error);
+      alert("Failed to log out. Please try again.");
+    }
   };
 
   const openModal = () => {

@@ -36,13 +36,16 @@ export const userLogin = async (data) => {
   }
 };
 
-export const userLogout = async () => {
+export const userLogout = async (refreshToken) => {
   try {
-    const response = await axios.post(`${baseURL}/logout`);
-    return response.data; // Successful response
+    const response = await axios.delete(`${baseURL}/logout`, {
+      data: { token: refreshToken },
+    });
+    console.log("Logout response:", response.data);
+    return response.data;
   } catch (error) {
-    console.error("Error:", error.response || error);
-    throw error; // Propagate error to be handled by the interceptor
+    console.error("Logout error:", error.response || error);
+    throw error;
   }
 };
 
@@ -57,9 +60,14 @@ export const getUserProfile = (token) => {
   });
 };
 
-export const dashboardData = async () => {
+export const dashboardData = async (accessToken) => {
   try {
-    const response = await apiClient.get("/dashboard");
+    const response = await apiClient.get("/dashboard", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    console.log("Dashboard data:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching dashboard data:", error.response || error);

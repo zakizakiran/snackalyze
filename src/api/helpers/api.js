@@ -14,14 +14,24 @@ export const isTokenExpired = (token) => {
   }
 };
 
-export const refreshToken = async (refreshTokenStr) => {
+export const refreshAccessToken = async () => {
   try {
+    const refreshToken = localStorage.getItem("refreshToken");
+    if (!refreshToken) {
+      throw new Error("No refresh token found in localStorage");
+    }
+
     const response = await axios.post(`${baseURL}/token`, {
-      token: refreshTokenStr,
+      token: refreshToken,
     });
-    return response.data.accessToken; // Assuming the backend returns the new access token
+
+    const { accessToken } = response.data;
+
+    // Save the new access token in localStorage
+    localStorage.setItem("accessToken", accessToken);
+    return accessToken; // Return the new token for immediate use if needed
   } catch (error) {
-    console.error("Error refreshing token:", error);
-    throw error; // Propagate error to be handled by the interceptor
+    console.error("Error refreshing token:", error.response || error);
+    throw error;
   }
 };

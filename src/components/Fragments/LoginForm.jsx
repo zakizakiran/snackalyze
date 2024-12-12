@@ -44,8 +44,6 @@ const LoginForm = () => {
     try {
       const response = await userLogin({ email, password });
 
-      console.log(response);
-
       if (response.status === "error") {
         setErrorMessage(response.message);
         setIsLoading(false);
