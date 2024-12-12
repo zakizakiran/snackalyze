@@ -40,7 +40,6 @@ export const userLogout = async (refreshToken) => {
     const response = await axios.delete(`${baseURL}/logout`, {
       data: { token: refreshToken },
     });
-    console.log("Logout response:", response.data);
     return response.data;
   } catch (error) {
     console.error("Logout error:", error.response || error);

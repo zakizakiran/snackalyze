@@ -1,14 +1,13 @@
 import axios from "axios";
 
 const baseURL = import.meta.env.VITE_APP_SPOONA_API_URL;
-const apiKey = import.meta.env.VITE_APP_API_KEY3;
+const apiKey = import.meta.env.VITE_APP_API_KEY4;
 
 export const getRecipes = async () => {
   try {
     const response = await axios.get(
       `${baseURL}/recipes/random?apiKey=${apiKey}&number=15`
     );
-    console.log("Response:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error:", error.response || error);
@@ -21,7 +20,6 @@ export const getRecipesById = async (id) => {
     const response = await axios.get(
       `${baseURL}/recipes/${id}/information?apiKey=${apiKey}`
     );
-    console.log("Response:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error:", error.response || error);
@@ -34,7 +32,6 @@ export const getNutritionById = async (id) => {
     const response = await axios.get(
       `${baseURL}/recipes/${id}/nutritionWidget.json?apiKey=${apiKey}`
     );
-    console.log("Response:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error:", error.response || error);
@@ -47,7 +44,6 @@ export const getSnackByUpc = async (upc) => {
     const response = await axios.get(
       `${baseURL}/food/products/upc/${upc}?apiKey=${apiKey}`
     );
-    console.log("Response:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error:", error.response || error);
@@ -60,7 +56,6 @@ export const searchRecipes = async (query) => {
     const response = await axios.get(
       `${baseURL}/recipes/complexSearch?apiKey=${apiKey}&query=${query}&number=10&addRecipeInformation=true`
     );
-    console.log("Response:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error:", error.response || error);
