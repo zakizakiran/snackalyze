@@ -3,13 +3,13 @@ import { PiCheckCircleDuotone, PiTimerDuotone } from "react-icons/pi";
 const FoodCard = (props) => {
   const { image, title, time } = props;
   return (
-    <div className="group border hover:bg-gray-100 border-slate-200 rounded-lg lg:max-w-xs h-full relative transition-transform duration-300">
+    <div className="group border hover:bg-gray-100 border-slate-200 rounded-lg lg:max-w-xs h-full relative overflow-hidden transition-transform duration-300">
       {/* Image section */}
       <div className="relative overflow-hidden">
         <img
           src={image}
           alt="snack-image"
-          className="w-full object-contain rounded-t-lg transition-transform duration-300 group-hover:scale-110"
+          className="w-full h-48 object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-110"
         />
         {/* Minutes display */}
         <div className="absolute top-2 right-2 bg-gray-100 h-fit w-auto p-2 rounded flex gap-1 items-center">
@@ -19,9 +19,9 @@ const FoodCard = (props) => {
       </div>
 
       {/* Content section */}
-      <div className="p-4">
-        <div className="flex justify-between gap-4">
-          <p className="text-base font-poppinsMedium mb-4">
+      <div className="p-4 flex flex-col h-28 justify-between">
+        <div>
+          <p className="text-base font-poppinsMedium line-clamp-2">
             {title.substring(0, 30)}...
           </p>
         </div>

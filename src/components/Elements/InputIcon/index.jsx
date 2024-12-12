@@ -6,7 +6,7 @@ const InputIcon = (props) => {
         onKeyDown={onKeyDown}
         type={type}
         placeholder={placeholder}
-        className="p-4 pl-10 rounded-lg bg-slate-100 w-full placeholder:text-sm active:outline-none focus:outline-none"
+        className="p-4 pl-10 rounded-lg bg-slate-100 w-full placeholder:text-sm active:outline-none focus:outline-1 outline-gray-300"
       />
       {icon}
     </div>

@@ -46,7 +46,7 @@ const DetailFoodPage = () => {
           <div className="">
             <Player
               src="/animations/loader-animation.json"
-              className="player w-32"
+              className="player w-28"
               loop
               speed={2}
               autoplay
