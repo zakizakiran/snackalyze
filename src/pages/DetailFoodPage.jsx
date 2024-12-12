@@ -70,8 +70,8 @@ const DetailFoodPage = () => {
               </h1>
               <div className="flex items-center text-green-500 text-sm gap-1 px-2 mb-8">
                 <PiCheckCircleDuotone size={"1.5rem"} />
-                <p className="text-lg">Safe</p>
-                <p className="text-lg">for you</p>
+                <p className="lg:text-lg">Safe</p>
+                <p className="lg:text-lg">for you</p>
               </div>
               <div className="border flex p-4 rounded-lg gap-8 lg:gap-16 justify-center items-center mb-4">
                 <div className="text-center text-sm lg:text-base font-poppinsMedium">
@@ -108,7 +108,7 @@ const DetailFoodPage = () => {
             </div>
           </div>
           <div className="grid sm:grid-cols-2 h-full gap-8">
-            <div className="border flex flex-col p-6 rounded-lg lg:h-96 overflow-hidden overflow-y-scroll">
+            <div className="border flex flex-col p-6 rounded-lg sm:h-96 overflow-hidden overflow-y-scroll">
               <h1 className="text-xl font-semibold mb-8">Ingredients</h1>
               <ul className="px-6">
                 {detailFood.extendedIngredients?.map((ingredient) => (
@@ -121,7 +121,7 @@ const DetailFoodPage = () => {
                 ))}
               </ul>
             </div>
-            <div className="border flex flex-col p-6 rounded-lg lg:h-96 overflow-hidden overflow-y-scroll">
+            <div className="border flex flex-col p-6 rounded-lg sm:h-96 overflow-hidden overflow-y-scroll">
               <h1 className="text-xl font-semibold mb-8">Instructions</h1>
               <div className="px-4">
                 {detailFood.analyzedInstructions?.[0]?.steps?.map((step) => (

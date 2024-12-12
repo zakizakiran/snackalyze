@@ -3,9 +3,9 @@ import { BrowserMultiFormatReader } from "@zxing/library";
 import Button from "../components/Elements/Button";
 import { PiScanDuotone } from "react-icons/pi";
 import { useTitle } from "../hooks/useTitle";
-import { use } from "react";
 import { getSnackByUpc } from "../api/services/snackService";
 import ListTile from "../components/Elements/ListTile";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 const ScanPage = () => {
   const [result, setResult] = useState(null);
@@ -13,6 +13,7 @@ const ScanPage = () => {
   const [permissionGranted, setPermissionGranted] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
   const [snackData, setSnackData] = useState({});
+  const [isLoading, setIsLoading] = useState(false); // Loading state
   useTitle({ title: "Scan Snack" });
 
   useEffect(() => {
@@ -54,6 +55,7 @@ const ScanPage = () => {
 
   const handleConfirm = () => {
     setIsConfirm(true);
+    setIsLoading(true); // Set loading to true before fetching
     const upc = result.text;
     const fetchSnackData = async () => {
       try {
@@ -61,26 +63,41 @@ const ScanPage = () => {
         setSnackData(response);
       } catch (error) {
         console.error("Error fetching snack data:", error);
+      } finally {
+        setIsLoading(false); // Set loading to false after fetching
       }
     };
     fetchSnackData();
   };
 
-  // Fungsi untuk mendapatkan nilai nutrient tertentu
+  // Function to get a specific nutrient value
   const getNutrientValue = (name) => {
     const nutrient = snackData.nutrition?.nutrients.find(
       (item) => item.name === name
     );
-    return nutrient ? nutrient.amount : "N/A"; // Tampilkan 'N/A' jika nutrient tidak ditemukan
+    return nutrient ? nutrient.amount : "N/A"; // Show 'N/A' if nutrient is not found
   };
 
   return isConfirm ? (
-    <div className="">
-      {snackData ? (
+    isLoading ? ( // Show loader if loading
+      <div className="flex flex-col gap-2 justify-center items-center h-screen">
+        <Player
+          src="/animations/loader-animation.json"
+          className="player w-28"
+          loop
+          speed={2}
+          autoplay
+        />
+        <p className="text-gray-500 text-center mt-6">
+          Looking for information...
+        </p>
+      </div>
+    ) : snackData ? (
+      <div className="">
         <div className="flex justify-center items-center flex-col px-2">
           <div className="text-center">
-            <h1 className="font-poppinsMedium mb-8">Snack Data</h1>
-            <div className="bg-white p-8 rounded-lg shadow-md mb-10">
+            <h1 className="font-poppinsMedium mb-8">Scanned Result</h1>
+            <div className="bg-white p-8 rounded-lg shadow-md mb-10 max-w-lg">
               <img
                 src={snackData.image}
                 className="w-auto m-auto mb-10"
@@ -118,22 +135,22 @@ const ScanPage = () => {
             </a>
           </div>
         </div>
-      ) : (
-        <div className="flex justify-center items-center flex-col px-2">
-          <div className="text-center">
-            <h1 className="font-poppinsMedium mb-8">No Data Found</h1>
-            <a href="/scan">
-              <Button
-                type="button"
-                classname="bg-primary hover:bg-black text-white w-full mt-10"
-              >
-                Scan Another
-              </Button>
-            </a>
-          </div>
+      </div>
+    ) : (
+      <div className="flex justify-center items-center flex-col px-2">
+        <div className="text-center">
+          <h1 className="font-poppinsMedium mb-8">No Data Found</h1>
+          <a href="/scan">
+            <Button
+              type="button"
+              classname="bg-primary hover:bg-black text-white w-full mt-10"
+            >
+              Scan Another
+            </Button>
+          </a>
         </div>
-      )}
-    </div>
+      </div>
+    )
   ) : (
     <div className="flex justify-center items-center flex-col px-2">
       <div className="text-center">
