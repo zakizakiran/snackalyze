@@ -1,5 +1,4 @@
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
 import apiClient from "../client/apiClient";
 
 const baseURL = "/api";
@@ -47,17 +46,6 @@ export const userLogout = async (refreshToken) => {
     console.error("Logout error:", error.response || error);
     throw error;
   }
-};
-
-export const getUserProfile = (token) => {
-  return new Promise((resolve, reject) => {
-    try {
-      const decoded = jwtDecode(token);
-      resolve(decoded);
-    } catch (error) {
-      reject(error);
-    }
-  });
 };
 
 export const dashboardData = async (accessToken) => {
