@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const AuthLayout = (props) => {
   const { title, children, type } = props;
   return (
-    <div className="flex flex-col justify-center pb-16 pt-8 sm:items-center">
+    <div className="flex flex-col justify-center pb-16 pt-12 lg:pt-20 sm:items-center">
       <div className="m-auto mb-10">
         <img src="/images/logo_icon.svg" className="w-16" alt="" />
       </div>

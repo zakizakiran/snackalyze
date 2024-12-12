@@ -70,12 +70,12 @@ const DashboardPage = () => {
             <div className="">
               <Player
                 src="/animations/loader-animation.json"
-                className="player w-32"
+                className="player w-28"
                 loop
                 speed={2}
                 autoplay
               />
-              <p className="text-gray-500 text-center mt-6">Loading...</p>
+              <p className="text-gray-500 text-center my-8">Loading...</p>
             </div>
           </div>
         ) : error ? ( // Check if there's an error

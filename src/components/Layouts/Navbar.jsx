@@ -50,11 +50,17 @@ const Navbar = () => {
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <div className="navbar bg-base-300 border-b border-gray-300 w-full">
+        <div className="fixed navbar top-0 bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-70 border-b border-gray-300 w-full">
           <div className="flex-1">
-            <Link to="/">
-              <img src="/images/Logo.svg" className="w-36 sm:w-44" alt="" />
-            </Link>
+            {isAuthenticated ? (
+              <Link to="/dashboard">
+                <img src="/images/Logo.svg" className="w-36 sm:w-44" alt="" />
+              </Link>
+            ) : (
+              <Link to="/">
+                <img src="/images/Logo.svg" className="w-36 sm:w-44" alt="" />
+              </Link>
+            )}
           </div>
           <div className="hidden flex-none lg:block">
             <ul className="menu menu-horizontal items-center gap-3">

@@ -16,7 +16,7 @@ const ModalBox = (props) => {
   } = props;
   return (
     <dialog className="modal" open>
-      <div className="modal-box border bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-65">
+      <div className="modal-box border h-fit bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-65">
         <h3 className="font-bold text-lg">{title}</h3>
         <p className="py-4">
           {isAnimation && (

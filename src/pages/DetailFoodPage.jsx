@@ -40,7 +40,7 @@ const DetailFoodPage = () => {
   };
 
   return (
-    <div className="py-6">
+    <div className="lg:py-6">
       {isLoading ? ( // Tampilkan loading jika isLoading true
         <div className="flex justify-center items-center h-40">
           <div className="">
@@ -58,9 +58,9 @@ const DetailFoodPage = () => {
         </div>
       ) : (
         <>
-          <div className="lg:flex gap-6">
+          <div className="sm:flex gap-6">
             <img
-              className="w-full object-cover rounded-lg lg:w-1/2 mb-8"
+              className="w-full object-cover rounded-lg sm:w-1/2 mb-8"
               src={detailFood.image}
               alt="food-image"
             />
@@ -76,7 +76,7 @@ const DetailFoodPage = () => {
               <div className="border flex p-4 rounded-lg gap-8 lg:gap-16 justify-center items-center mb-4">
                 <div className="text-center text-sm lg:text-base font-poppinsMedium">
                   <p>{detailFood.readyInMinutes}</p>
-                  <p className="text-gray-400">min</p>
+                  <p className="text-gray-400">Minutes</p>
                 </div>
                 <div className="text-center text-sm lg:text-base font-poppinsMedium">
                   <p>{nutrition.ingredients?.length || 0}</p>
@@ -108,9 +108,9 @@ const DetailFoodPage = () => {
             </div>
           </div>
           <div className="grid sm:grid-cols-2 h-full gap-8">
-            <div className="border flex flex-col p-6 rounded-lg sm:h-96 overflow-hidden overflow-y-scroll">
+            <div className="border flex flex-col p-6 rounded-lg sm:h-96">
               <h1 className="text-xl font-semibold mb-8">Ingredients</h1>
-              <ul className="px-6">
+              <ul className="px-6 overflow-hidden overflow-y-scroll">
                 {detailFood.extendedIngredients?.map((ingredient) => (
                   <li
                     key={ingredient.id}
@@ -121,9 +121,9 @@ const DetailFoodPage = () => {
                 ))}
               </ul>
             </div>
-            <div className="border flex flex-col p-6 rounded-lg sm:h-96 overflow-hidden overflow-y-scroll">
+            <div className="border flex flex-col p-6 rounded-lg sm:h-96">
               <h1 className="text-xl font-semibold mb-8">Instructions</h1>
-              <div className="px-4">
+              <div className="px-4 overflow-hidden overflow-y-scroll">
                 {detailFood.analyzedInstructions?.[0]?.steps?.map((step) => (
                   <div
                     key={step.number}

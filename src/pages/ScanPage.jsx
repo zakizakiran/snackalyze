@@ -97,14 +97,14 @@ const ScanPage = () => {
         <div className="flex justify-center items-center flex-col px-2">
           <div className="text-center">
             <h1 className="font-poppinsMedium mb-8">Scanned Result</h1>
-            <div className="bg-white p-8 rounded-lg shadow-md mb-10 max-w-lg">
+            <div className="border bg-white p-8 rounded-lg shadow mb-10 max-w-lg">
               <img
                 src={snackData.image}
                 className="w-auto m-auto mb-10"
                 alt=""
               />
-              <h2 className="font-bold text-lg mb-6">{snackData.title}</h2>
-              <div className="flex flex-col gap-2">
+              <h2 className="font-bold text-lg mb-10">{snackData.title}</h2>
+              <div className="flex flex-col gap-4">
                 <ListTile title="Brand" body={snackData.brand || "-"} />
                 <ListTile
                   title="Calories (kcal)"
