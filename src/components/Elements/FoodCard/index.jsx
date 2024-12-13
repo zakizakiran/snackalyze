@@ -1,7 +1,22 @@
-import { PiCheckCircleDuotone, PiTimerDuotone } from "react-icons/pi";
+import {
+  PiCheckCircleDuotone,
+  PiTimerDuotone,
+  PiWarningDuotone,
+} from "react-icons/pi";
 
 const FoodCard = (props) => {
-  const { image, title, time } = props;
+  const { image, title, time, allergy, aisles } = props;
+
+  console.log("Allergy props:", allergy);
+  console.log("Aisles props:", aisles);
+
+  // Pengecekan alergi dengan validasi data
+  const isSafe = !allergy.some((userAllergy) =>
+    aisles.some((aisle) =>
+      String(aisle).toLowerCase().includes(userAllergy.toLowerCase())
+    )
+  );
+
   return (
     <div className="group border hover:bg-gray-100 border-slate-200 rounded-lg lg:max-w-xs h-full relative overflow-hidden transition-transform duration-300">
       {/* Image section */}
@@ -25,10 +40,22 @@ const FoodCard = (props) => {
             {title.substring(0, 30)}...
           </p>
         </div>
-        <div className="flex items-center text-green-500 text-sm gap-1">
-          <PiCheckCircleDuotone size={"1.2rem"} />
-          <p>Safe</p>
-          <p>for you</p>
+        <div
+          className={`flex items-center text-sm gap-1 ${
+            isSafe ? "text-green-500" : "text-red-500"
+          }`}
+        >
+          {isSafe ? (
+            <>
+              <PiCheckCircleDuotone size={"1.2rem"} />
+              <p>Safe For You</p>
+            </>
+          ) : (
+            <>
+              <PiWarningDuotone size={"1.2rem"} />
+              <p>Contains Allergens</p>
+            </>
+          )}
         </div>
       </div>
     </div>

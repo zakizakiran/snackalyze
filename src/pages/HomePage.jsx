@@ -47,11 +47,11 @@ const HomePage = () => {
         />
         <Accordion
           title="Why Snackalyze?"
-          desc="Snackalyze allows users to scan snack packaging and instantly access detailed and insightful information. Whether you’re tracking your diet, exploring new snacks, or simply curious about what you’re eating, Snackalyze has got you covered."
+          desc="Snackalyze allows users to scan snack packaging barcode and instantly access detailed and insightful information. Whether you’re tracking your diet, exploring new snacks, or simply curious about what you’re eating, Snackalyze has got you covered."
         />
         <Accordion
           title="How it Works?"
-          desc="Snackalyze simplifies your snacking experience with cutting-edge technology. Simply take a photo of your snack's packaging, and the app uses advanced image recognition to identify the product."
+          desc="Snackalyze simplifies your snacking experience with cutting-edge technology. Simply take a photo of your snack's packaging barcode, and the app uses advanced barcode recognition to identify the product."
         />
       </div>
       <ContactSection />

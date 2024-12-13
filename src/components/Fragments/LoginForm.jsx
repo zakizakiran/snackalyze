@@ -12,13 +12,13 @@ const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
     if (token) {
       navigate("/dashboard");
     }
-  }, [navigate]);
+  }, [token]);
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

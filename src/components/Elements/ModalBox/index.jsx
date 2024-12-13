@@ -7,7 +7,8 @@ const ModalBox = (props) => {
     primaryActionText,
     secondaryActionText,
     title,
-    classname,
+    primaryStyle,
+    secondaryStyle,
     description,
     animation,
     isSecondaryAction = true,
@@ -16,7 +17,7 @@ const ModalBox = (props) => {
   } = props;
   return (
     <dialog className="modal" open>
-      <div className="modal-box border h-fit bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-65">
+      <div className="modal-box border h-fit p-10 bg-white rounded-lg bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-65">
         <h3 className="font-bold text-lg">{title}</h3>
         <p className="py-4">
           {isAnimation && (
@@ -34,7 +35,7 @@ const ModalBox = (props) => {
         <div className="modal-action">
           {isPrimaryAction && (
             <button
-              className={`${classname} border text-sm p-3 font-poppinsMedium rounded-md border-primary text-primary hover:bg-black hover:border-black hover:text-white`}
+              className={`${primaryStyle} border text-sm p-3 font-poppinsMedium rounded-md border-primary text-primary hover:bg-black hover:border-black hover:text-white`}
               onClick={primaryAction}
             >
               {primaryActionText}
@@ -43,7 +44,7 @@ const ModalBox = (props) => {
 
           {isSecondaryAction && (
             <button
-              className="text-sm p-3 font-poppinsMedium rounded-md bg-primary text-white hover:bg-black"
+              className={`${secondaryStyle}text-sm p-3 font-poppinsMedium rounded-md bg-primary text-white hover:bg-black`}
               onClick={secondaryAction}
             >
               {secondaryActionText}

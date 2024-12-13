@@ -123,17 +123,19 @@ const Navbar = () => {
                       tabIndex={0}
                       className="menu menu-sm dropdown-content bg-white rounded-box z-20 mt-8 w-52 p-2 shadow"
                     >
-                      <li className="hover:bg-gray-100 rounded-md duration-150 ease-in-out mb-4">
-                        <div className="flex border border-gray-300 p-1 h-full rounded-md items-center justify-center">
-                          <PiUserCircleDuotone
-                            size={"2rem"}
-                            className="text-primary"
-                          />
-                          <p className="text-sm font-poppinsMedium ml-2 text-primary">
-                            {username}
-                          </p>
-                        </div>
-                      </li>
+                      <Link to="/profile">
+                        <li className="hover:bg-gray-100 rounded-md duration-150 ease-in-out mb-4">
+                          <div className="flex border border-gray-300 p-1 h-full rounded-md items-center justify-center">
+                            <PiUserCircleDuotone
+                              size={"2rem"}
+                              className="text-primary"
+                            />
+                            <p className="text-sm font-poppinsMedium ml-2 text-primary">
+                              {username}
+                            </p>
+                          </div>
+                        </li>
+                      </Link>
                       <li className="hover:bg-gray-100 rounded-md duration-150 ease-in-out p-1">
                         <NavLink
                           to="/"
@@ -259,12 +261,14 @@ const Navbar = () => {
           </div>
           {isAuthenticated && (
             <div className="w-full">
-              <div className="flex border border-gray-300 p-2 rounded-md items-center justify-center mb-2">
-                <PiUserCircleDuotone size={"2rem"} className="text-primary" />
-                <p className="text-sm font-poppinsMedium ml-2 text-primary">
-                  {username}
-                </p>
-              </div>
+              <Link to="/profile">
+                <div className="flex border border-gray-300 p-2 rounded-md items-center justify-center mb-2">
+                  <PiUserCircleDuotone size={"2rem"} className="text-primary" />
+                  <p className="text-sm font-poppinsMedium ml-2 text-primary">
+                    {username}
+                  </p>
+                </div>
+              </Link>
               <Button
                 type="button"
                 onClick={openModal}

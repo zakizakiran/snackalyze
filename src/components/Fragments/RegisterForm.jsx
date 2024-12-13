@@ -32,6 +32,12 @@ const RegisterForm = () => {
       return;
     }
 
+    // Validation for username (no spaces allowed)
+    if (data.username.includes(" ")) {
+      setResponseMessage("Username cannot contain spaces.");
+      return;
+    }
+
     // Validation for password length
     if (data.password.length < 8) {
       setResponseMessage("Password must be at least 8 characters long.");

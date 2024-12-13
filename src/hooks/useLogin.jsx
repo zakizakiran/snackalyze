@@ -15,17 +15,20 @@ export const useLogin = (token) => {
         } else if (token && isTokenExpired(token)) {
           console.warn("Token expired, attempting to refresh...");
           const newTokenResponse = await refreshAccessToken(); // Panggil fungsi refresh token
-          if (newTokenResponse.accessToken) {
-            localStorage.setItem("accessToken", newTokenResponse.accessToken); // Simpan token baru
-            const decoded = jwtDecode(newTokenResponse.accessToken);
+          if (newTokenResponse.status === 200) {
+            localStorage.setItem(
+              "accessToken",
+              newTokenResponse.response.payload?.accessToken
+            );
+            const decoded = jwtDecode(
+              newTokenResponse.response.payload?.accessToken
+            );
             setUsername(decoded.username);
           } else {
+            // Token refresh gagal, arahkan ke login
             setUsername(null);
-            console.error("Failed to refresh token.");
-            window.location.href = "/login"; // Redirect jika gagal refresh
+            window.location.href = "/login";
           }
-        } else {
-          setUsername(null);
         }
       } catch (error) {
         console.error("Error handling token:", error);
