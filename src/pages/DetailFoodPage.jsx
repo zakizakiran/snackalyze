@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getNutritionById, getRecipesById } from "../api/services/snackService";
+import { getUserAllergy } from "../api/services/authService";
 import { Player } from "@lottiefiles/react-lottie-player";
-import { PiCheckCircleDuotone } from "react-icons/pi";
+import { PiCheckCircleDuotone, PiWarningDuotone } from "react-icons/pi";
+import { jwtDecode } from "jwt-decode";
 
 const DetailFoodPage = () => {
   const { id } = useParams();
   const [detailFood, setDetailFood] = useState({});
   const [nutrition, setNutrition] = useState({});
+  const [userAllergies, setUserAllergies] = useState([]); // State for user allergies
   const [isLoading, setIsLoading] = useState(true); // State for loading
   const navigate = useNavigate();
 
@@ -21,8 +24,15 @@ const DetailFoodPage = () => {
         try {
           const recipeResponse = await getRecipesById(id);
           const nutritionResponse = await getNutritionById(id);
+          const allergiesResponse = await getUserAllergy(jwtDecode(token).id); // Fetch user allergies
+
           setNutrition(nutritionResponse);
           setDetailFood(recipeResponse);
+
+          const allergies =
+            allergiesResponse?.response?.payload?.Allergy?.[0]?.allergy?.data ||
+            [];
+          setUserAllergies(allergies);
         } catch (error) {
           console.error("Error fetching detail food:", error);
         } finally {
@@ -33,15 +43,22 @@ const DetailFoodPage = () => {
     }
   }, [navigate, id]);
 
-  // Fungsi untuk mendapatkan nilai nutrient tertentu
+  // Function to get specific nutrient value
   const getNutrientValue = (name) => {
     const nutrient = nutrition.nutrients?.find((item) => item.name === name);
-    return nutrient ? nutrient.amount : "N/A"; // Tampilkan 'N/A' jika nutrient tidak ditemukan
+    return nutrient ? nutrient.amount : "N/A"; // Show 'N/A' if nutrient is not found
   };
+
+  // Check if food is safe based on user allergies
+  const isSafe = !userAllergies.some((userAllergy) =>
+    detailFood.extendedIngredients?.some((ingredient) =>
+      ingredient.aisle.toLowerCase().includes(userAllergy.toLowerCase())
+    )
+  );
 
   return (
     <div className="lg:py-6">
-      {isLoading ? ( // Tampilkan loading jika isLoading true
+      {isLoading ? ( // Show loading if isLoading is true
         <div className="flex justify-center items-center h-40">
           <div className="">
             <Player
@@ -68,10 +85,22 @@ const DetailFoodPage = () => {
               <h1 className="text-xl lg:text-2xl font-bold px-2 mb-6">
                 {detailFood.title}
               </h1>
-              <div className="flex items-center text-green-500 text-sm gap-1 px-2 mb-8">
-                <PiCheckCircleDuotone size={"1.5rem"} />
-                <p className="lg:text-lg">Safe</p>
-                <p className="lg:text-lg">for you</p>
+              <div
+                className={`flex items-center text-sm gap-1 px-2 mb-8 ${
+                  isSafe ? "text-green-500" : "text-red-500"
+                }`}
+              >
+                {isSafe ? (
+                  <>
+                    <PiCheckCircleDuotone size={"1.5rem"} />
+                    <p className="lg:text-lg">Safe For You</p>
+                  </>
+                ) : (
+                  <>
+                    <PiWarningDuotone size={"1.5rem"} />
+                    <p className="lg:text-lg">Contains Allergens</p>
+                  </>
+                )}
               </div>
               <div className="border flex p-4 rounded-lg gap-8 lg:gap-16 justify-center items-center mb-4">
                 <div className="text-center text-sm lg:text-base font-poppinsMedium">
@@ -111,14 +140,24 @@ const DetailFoodPage = () => {
             <div className="border flex flex-col p-6 rounded-lg sm:h-96">
               <h1 className="text-xl font-semibold mb-8">Ingredients</h1>
               <ul className="px-6 overflow-hidden overflow-y-scroll">
-                {detailFood.extendedIngredients?.map((ingredient) => (
-                  <li
-                    key={ingredient.id}
-                    className="text-gray-600 text-sm lg:text-base font-poppinsMedium list-disc pl-1 mb-4"
-                  >
-                    {ingredient.original}
-                  </li>
-                ))}
+                {detailFood.extendedIngredients?.map((ingredient) => {
+                  const isAllergenic = userAllergies.includes(ingredient.aisle);
+                  return (
+                    <li
+                      key={ingredient.id}
+                      className={`text-sm lg:text-base font-poppinsMedium list-disc pl-1 mb-4 ${
+                        isAllergenic ? "text-red-500" : "text-gray-600"
+                      }`}
+                    >
+                      {ingredient.original}
+                      {isAllergenic && (
+                        <span className="ml-2 text-red-500 text-xs">
+                          (Allergenic)
+                        </span>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
             <div className="border flex flex-col p-6 rounded-lg sm:h-96">

@@ -1,5 +1,6 @@
 import axios from "axios";
 import apiClient from "../client/apiClient";
+import { data } from "autoprefixer";
 
 const baseURL = "/api";
 
@@ -47,6 +48,34 @@ export const userLogout = async (refreshToken) => {
   }
 };
 
+export const getUserProfile = async (id, accessToken) => {
+  try {
+    const response = await apiClient.get(`/profile/${id}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching profile data:", error.response || error);
+    throw error;
+  }
+};
+
+export const editUserProfile = async (id, payload, accessToken) => {
+  try {
+    const response = await apiClient.post(`/profile/${id}`, payload, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error updating profile data:", error.response || error);
+    throw error;
+  }
+};
+
 export const dashboardData = async (accessToken) => {
   try {
     const response = await apiClient.get("/dashboard", {
@@ -58,6 +87,26 @@ export const dashboardData = async (accessToken) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching dashboard data:", error.response || error);
+    throw error;
+  }
+};
+
+export const addAllergy = async (id, payload) => {
+  try {
+    const response = await apiClient.post(`/profile/allergy/${id}`, payload);
+    return response.data;
+  } catch (error) {
+    console.error("Error adding allergy:", error.response || error);
+    throw error;
+  }
+};
+
+export const getUserAllergy = async (id) => {
+  try {
+    const response = await apiClient.get(`/profile/allergy/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching allergy data:", error.response || error);
     throw error;
   }
 };

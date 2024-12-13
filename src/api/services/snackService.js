@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseURL = import.meta.env.VITE_APP_SPOONA_API_URL;
-const apiKey = import.meta.env.VITE_APP_API_KEY4;
+const apiKey = import.meta.env.VITE_APP_API_KEY8;
 
 export const getRecipes = async () => {
   try {
