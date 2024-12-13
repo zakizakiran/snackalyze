@@ -11,6 +11,7 @@ import AboutPage from "./pages/AboutPage.jsx";
 import DashboardPage from "./pages/DashboardPage.jsx";
 import ScanPage from "./pages/ScanPage.jsx";
 import DetailFoodPage from "./pages/DetailFoodPage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,14 @@ const router = createBrowserRouter([
     element: (
       <MainLayout>
         <DetailFoodPage />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/profile",
+    element: (
+      <MainLayout>
+        <ProfilePage />
       </MainLayout>
     ),
   },
