@@ -25,8 +25,7 @@ export const refreshAccessToken = async () => {
       token: refreshToken,
     });
 
-    const { accessToken } = response.data;
-
+    const accessToken = response.data; // Ensure you extract the actual token from the payload
     // Save the new access token in localStorage
     localStorage.setItem("accessToken", accessToken);
     return accessToken; // Return the new token for immediate use if needed
