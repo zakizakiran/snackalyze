@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
-import { isTokenExpired, refreshAccessToken } from "../api/helpers/api";
+import {
+  isTokenExpired,
+  refreshAccessToken,
+} from "../api/helpers/tokenService";
 
 export const useLogin = (token) => {
   const [username, setUsername] = useState(null);

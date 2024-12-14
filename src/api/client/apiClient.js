@@ -1,5 +1,5 @@
 import axios from "axios";
-import { refreshAccessToken } from "../helpers/api";
+import { refreshAccessToken } from "../helpers/tokenService";
 
 const apiClient = axios.create({
   baseURL: "/api",
