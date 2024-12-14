@@ -1,6 +1,5 @@
 import axios from "axios";
 import apiClient from "../client/apiClient";
-import { data } from "autoprefixer";
 
 const baseURL = "/api";
 

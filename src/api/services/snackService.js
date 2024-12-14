@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const baseURL = import.meta.env.VITE_APP_SPOONA_API_URL;
-const apiKey = import.meta.env.VITE_APP_API_KEY8;
+
+//Ganti API KEY yang sudah tersedia di .env jika limit sudah tercapai
+const apiKey = import.meta.env.VITE_APP_API_KEY1;
 
 export const getRecipes = async () => {
   try {
