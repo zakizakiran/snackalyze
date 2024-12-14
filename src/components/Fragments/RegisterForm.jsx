@@ -4,7 +4,7 @@ import Button from "../Elements/Button";
 import Input from "../Elements/Input";
 import { useNavigate } from "react-router-dom";
 import { PiWarningCircleDuotone } from "react-icons/pi";
-import ModalBox from "../Elements/ModalBox"; // Ensure this is imported correctly
+import ModalBox from "../Elements/ModalBox";
 
 const RegisterForm = () => {
   const navigate = useNavigate();

@@ -7,9 +7,6 @@ import {
 const FoodCard = (props) => {
   const { image, title, time, allergy, aisles } = props;
 
-  console.log("Allergy props:", allergy);
-  console.log("Aisles props:", aisles);
-
   // Pengecekan alergi dengan validasi data
   const isSafe = !allergy.some((userAllergy) =>
     aisles.some((aisle) =>
