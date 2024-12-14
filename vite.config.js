@@ -1,8 +1,15 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { nodePolyfills } from "vite-plugin-node-polyfills";
 
 // https://vite.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      "source-map-js": "source-map",
+      path: "path-browserify",
+    },
+  },
   server: {
     proxy: {
       "/api": {
@@ -12,5 +19,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react()],
+  plugins: [react(), nodePolyfills()],
 });
