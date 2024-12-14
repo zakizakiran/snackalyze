@@ -25,13 +25,13 @@ const HomePage = () => {
           />
           <FeatureItem
             title="Scan your Snacks"
-            desc="Scan Snack Packaging Effortlessly scan any snack package to reveal all the essential details."
+            desc="Scan snack packaging barcode effortlessly scan any snack package to reveal all the essential details."
             icon={<LuScanLine size={"1.5rem"} />}
           />
           <FeatureItem
             title="Worried About your Health?"
-            desc="Personalized Recommendations Receive tailored suggestions based on
-              your dietary preferences and health goals."
+            desc="Personalized recommendations receive tailored suggestions based on
+              your allergies."
             icon={<PiHeartbeatDuotone size={"1.5rem"} />}
           />
         </div>
@@ -43,7 +43,7 @@ const HomePage = () => {
         <Accordion
           checked={true}
           title="What is Snackalyze?"
-          desc="Snackalyze is a web app that uses image recognition to scan snack packaging and instantly provide nutritional details, recipe ideas, and personalized snack recommendations."
+          desc="Snackalyze is a web app that uses image recognition to scan snack packaging barcode and instantly provide nutritional details, recipe ideas, and personalized snack recommendations."
         />
         <Accordion
           title="Why Snackalyze?"
